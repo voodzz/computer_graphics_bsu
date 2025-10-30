@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обработка изображений</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://docs.opencv.org/4.x/opencv.js" async></script>
+</head>
+<body>
+<h1>Обработка изображений с помощью OpenCV</h1>
+<input type="file" id="upload" accept="image/*">
+<canvas id="canvas"></canvas>
+<div id="controls">
+    <button id="contrastButton">Линейное контрастирование</button>
+    <button id="rgbHistogramEqualization">Эквализация гистограммы RGB</button>
+    <button id="hsvHistogramEqualization">Эквализация гистограммы HSV</button>
+    <button id="blur">Однородный усредняющий фильтр</button>
+    <button id="GaussBlur">Фильтр Гаусса</button>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
