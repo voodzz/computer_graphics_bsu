@@ -116,11 +116,42 @@ document.getElementById('showHistogramButton').addEventListener('click', () => {
 document.getElementById('contrastButton').addEventListener('click', () => {
     const src = cv.imread(canvas);
     const dst = new cv.Mat();
+    const temp = new cv.Mat();
 
-    cv.convertScaleAbs(src, dst, 1.5, 0);
+    cv.cvtColor(src, temp, cv.COLOR_RGBA2RGB);
+
+    let fMin = 255;
+    let fMax = 0;
+
+    for (let i = 0; i < temp.rows; i++) {
+        for (let j = 0; j < temp.cols; j++) {
+            const pixel = temp.ucharPtr(i, j);
+            const y = 0.299 * pixel[0] + 0.587 * pixel[1] + 0.114 * pixel[2];
+
+            if (y < fMin) fMin = y;
+            if (y > fMax) fMax = y;
+        }
+    }
+
+    const range = fMax - fMin || 1;
+
+    dst.create(temp.rows, temp.cols, temp.type());
+
+    for (let i = 0; i < temp.rows; i++) {
+        for (let j = 0; j < temp.cols; j++) {
+            const srcPix = temp.ucharPtr(i, j);
+            const dstPix = dst.ucharPtr(i, j);
+
+            dstPix[0] = Math.round(255 * (srcPix[0] - fMin) / range);
+            dstPix[1] = Math.round(255 * (srcPix[1] - fMin) / range);
+            dstPix[2] = Math.round(255 * (srcPix[2] - fMin) / range);
+        }
+    }
+
     cv.imshow(canvas, dst);
 
     src.delete();
+    temp.delete();
     dst.delete();
 });
 
