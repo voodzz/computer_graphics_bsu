@@ -117,7 +117,7 @@ document.getElementById('contrastButton').addEventListener('click', () => {
     const src = cv.imread(canvas);
     const dst = new cv.Mat();
 
-    cv.convertScaleAbs(src, dst, 1.5, -64);
+    cv.convertScaleAbs(src, dst, 1.5, 0);
     cv.imshow(canvas, dst);
 
     src.delete();
