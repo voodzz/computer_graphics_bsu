@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Растровые Алгоритмы с Изменяемой Сеткой</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<h1>Растровые Алгоритмы</h1>
+
+<div class="controls">
+    <label>Выбор алгоритма:
+        <select id="algorithm">
+            <option value="step">Пошаговый</option>
+            <option value="dda">ЦДА</option>
+            <option value="bresenham">Брезенхем (линии)</option>
+            <option value="bresenham_circle">Брезенхем (окружность)</option>
+        </select>
+    </label>
+    <label>Размер сетки:
+        <input type="range" id="gridSize" min="20" max="50" value="20" step="5" onchange="updateGridSize()">
+    </label>
+    <button onclick="draw()">Нарисовать</button>
+    <button onclick="testAlgorithms()">Время выполнения</button>
+</div>
+
+<canvas id="gridCanvas" width="500" height="500"></canvas>
+<div class="status" id="status">Нажмите на полотно, чтобы выбрать начальную и конечную точки.</div>
+<p>P.S. Вещественные координаты округляются до левой верхней координаты текущей клетки</p>
+
+<script src="app.js"></script>
+</body>
+</html>

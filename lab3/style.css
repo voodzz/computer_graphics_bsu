@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.controls {
+    margin: 20px;
+}
+
+.status {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+#gridCanvas {
+    border: 1px solid black;
+    background: #f0f0f0;
+    cursor: crosshair;
+    position: relative;
+    display: inline-block;
+}
+
+canvas {
+    font-size: 12px;
+}
